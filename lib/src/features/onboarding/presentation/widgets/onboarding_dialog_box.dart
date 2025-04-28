@@ -5,10 +5,22 @@ import 'package:jarvis_app/src/features/onboarding/presentation/widgets/app_butt
 
 import '../../../../config/themes/colors.dart';
 
-class OnboardingDialogBox extends StatelessWidget {
+class OnboardingDialogBox extends StatefulWidget {
   const OnboardingDialogBox({
     super.key,
   });
+
+  @override
+  State<OnboardingDialogBox> createState() => _OnboardingDialogBoxState();
+}
+
+class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
+  List<String> title = ['Meet **Jarvis.**', 'Live **dialogue.**'];
+  List<String> contents = [
+    'The AI-powered GPT-3 **search** and **content** **creation** app that gives you accurate, ad-free results instantly.',
+    'Get the perfect results every time with Jarvis dialogue-based editing and live feedback feature.'
+  ];
+  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +48,11 @@ class OnboardingDialogBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Spacer(),
             _pagingBarWidget(),
             const SizedBox(height: 27),
             MarkdownBody(
-              data: 'Meet **Jarvis.**',
+              data: title[_index],
               styleSheet: MarkdownStyleSheet(
                 p: AppTextStyle.kTitleTextStyle(
                     const Color.fromARGB(255, 3, 10, 7)),
@@ -48,8 +61,7 @@ class OnboardingDialogBox extends StatelessWidget {
             ),
             const SizedBox(height: 13),
             MarkdownBody(
-              data:
-                  'The AI-powered GPT-3 **search** and **content** **creation** app that gives you accurate, ad-free results instantly.',
+              data: contents[_index],
               styleSheet: MarkdownStyleSheet(
                 p: AppTextStyle.kBodyTextStyle(
                     const Color.fromARGB(255, 3, 10, 7)),
@@ -58,8 +70,23 @@ class OnboardingDialogBox extends StatelessWidget {
             ),
             const Spacer(),
             AppButton.buttonWithArrow(
-              onTap: () {},
-              text: "Next",
+              onTap: () => setState(() {
+                _index == 0
+                    ? _index++
+                    : showBottomSheet(
+                      backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => Container(
+                          height: 425,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.kWhiteColor(),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                      );
+              }),
+              text: _index == 0 ? "Next" : "Get started",
             ),
             const Spacer(),
           ],
@@ -70,11 +97,17 @@ class OnboardingDialogBox extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        _selectedBar(),
-        const SizedBox(width: 5),
-        _unSelectedBar(),
-      ],
+      children: _index == 0
+          ? [
+              _selectedBar(),
+              const SizedBox(width: 5),
+              _unSelectedBar(),
+            ]
+          : [
+              _unSelectedBar(),
+              const SizedBox(width: 5),
+              _selectedBar(),
+            ],
     );
   }
 
