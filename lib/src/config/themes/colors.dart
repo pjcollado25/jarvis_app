@@ -24,4 +24,5 @@ class AppColors {
         transform: GradientRotation(153),
       );
   static Color kPrimaryButtonColor() => const Color(0xFF25946A);
+  static Color kNavBarContainerColor() => const Color(0xFFEDEDED);
 }

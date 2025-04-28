@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jarvis_app/src/config/themes/colors.dart';
 import 'package:jarvis_app/src/features/onboarding/presentation/widgets/onboarding_dialog_box.dart';
 import '../widgets/appbar_button.dart';

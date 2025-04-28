@@ -74,24 +74,86 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
                 _index == 0
                     ? _index++
                     : showBottomSheet(
-                      backgroundColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
                         context: context,
-                        builder: (context) => Container(
-                          height: 425,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: AppColors.kWhiteColor(),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
+                        builder: (context) => bottomSheetSignIn(),
                       );
               }),
               text: _index == 0 ? "Next" : "Get started",
+            ),
+            const SizedBox(height: 26),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already have an account?",
+                  style: AppTextStyle.kSmallTextStyle(),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  "Login",
+                  style: AppTextStyle.kTextButtonTextStyle(),
+                ),
+              ],
             ),
             const Spacer(),
           ],
         ),
       );
+
+  bottomSheetSignIn() {
+    return Container(
+      height: 425,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.kWhiteColor(),
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.29),
+            offset: const Offset(0, 3),
+            blurRadius: 12,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          children: [
+            Container(
+              height: 10,
+              width: 100,
+              decoration: BoxDecoration(
+                color: AppColors.kNavBarContainerColor(),
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
+            const Spacer(),
+            Text(
+              "Welcome to Jarvis GPT-3",
+              style: AppTextStyle.kHeaderTextStyle(),
+            ),
+            Container(
+              height: 45,
+              width: 260,
+              decoration: BoxDecoration(
+                color: AppColors.kSecondaryColor(),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    offset: const Offset(0, 10),
+                    blurRadius: 20,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
   _pagingBarWidget() {
     return Row(

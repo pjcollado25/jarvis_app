@@ -8,9 +8,22 @@ class AppTextStyle {
       fontSize: 28, color: color, fontWeight: FontWeight.bold);
   static TextStyle kBodyTextStyle(Color color) => GoogleFonts.poppins(
       fontSize: 15, color: color, fontWeight: FontWeight.w500);
+  static TextStyle kSmallTextStyle() => GoogleFonts.poppins(
+      fontSize: 14, color: Colors.black);
   static TextStyle kButtonTextStyle() => TextStyle(
         fontSize: 14,
         color: AppColors.kWhiteColor(),
         fontWeight: FontWeight.bold,
+      );
+  static TextStyle kHeaderTextStyle() => TextStyle(
+        fontSize: 25,
+        color: AppColors.kSecondaryColor(),
+        fontWeight: FontWeight.bold,
+      );
+  static TextStyle kTextButtonTextStyle() => TextStyle(
+        fontSize: 14,
+        color: AppColors.kSecondaryColor(),
+        fontWeight: FontWeight.bold,
+        decoration: TextDecoration.underline,
       );
 }
