@@ -4,6 +4,7 @@ import 'package:jarvis_app/src/config/themes/styles.dart';
 import 'package:jarvis_app/src/features/onboarding/presentation/widgets/app_button.dart';
 
 import '../../../../config/themes/colors.dart';
+import 'social_media_login_button.dart';
 
 class OnboardingDialogBox extends StatefulWidget {
   const OnboardingDialogBox({
@@ -134,21 +135,10 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
               "Welcome to Jarvis GPT-3",
               style: AppTextStyle.kHeaderTextStyle(),
             ),
-            Container(
-              height: 45,
-              width: 260,
-              decoration: BoxDecoration(
-                color: AppColors.kSecondaryColor(),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    offset: const Offset(0, 10),
-                    blurRadius: 20,
-                  ),
-                ],
-              ),
-            )
+            SocialMediaLoginButton(
+              title: 'Login with gmail',
+              backgroundColor: AppColors.kSecondaryColor(),
+            ),
           ],
         ),
       ),
