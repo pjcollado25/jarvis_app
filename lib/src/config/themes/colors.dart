@@ -25,4 +25,5 @@ class AppColors {
   static Color kPrimaryButtonColor() => const Color(0xFF25946A);
   static Color kNavBarContainerColor() => const Color(0xFFEDEDED);
   static Color kGrayIconColor() => const Color(0xFFB2B2B2);
+  static Color kTextFieldBackgroundColor() => const Color(0xFFEFEFF5);
 }

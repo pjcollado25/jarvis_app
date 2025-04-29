@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:jarvis_app/src/config/themes/styles.dart';
+import 'package:jarvis_app/src/features/auth/presentation/views/authentication_view.dart';
 import 'package:jarvis_app/src/features/onboarding/presentation/widgets/app_button.dart';
 
 import '../../../../config/themes/colors.dart';
@@ -22,6 +23,12 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
     'Get the perfect results every time with Jarvis dialogue-based editing and live feedback feature.'
   ];
   int _index = 0;
+
+  showBottomDialog(bool isLogIn) => showBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) => AuthenticationView(isLogIn: isLogIn),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +79,7 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
             const Spacer(),
             AppButton.buttonWithArrow(
               onTap: () => setState(() {
-                _index == 0 ? _index++ : null;
-                // showBottomSheet(
-                //     backgroundColor: Colors.transparent,
-                //     context: context,
-                //     builder: (context) => bottomSheetSignIn(),
-                //   );
+                _index == 0 ? _index++ : showBottomDialog(false);
               }),
               text: _index == 0 ? "Next" : "Get started",
             ),
@@ -91,9 +93,12 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
                   style: AppTextStyle.kSmallTextStyle(),
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  "Login",
-                  style: AppTextStyle.kTextButtonTextStyle(),
+                InkWell(
+                  onTap: () => showBottomDialog(true),
+                  child: Text(
+                    "Login",
+                    style: AppTextStyle.kTextButtonTextStyle(),
+                  ),
                 ),
               ],
             ),
@@ -101,48 +106,6 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
           ],
         ),
       );
-
-  bottomSheetSignIn() {
-    return Container(
-      height: 425,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColors.kWhiteColor(),
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.29),
-            offset: const Offset(0, 3),
-            blurRadius: 12,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Column(
-          children: [
-            Container(
-              height: 10,
-              width: 100,
-              decoration: BoxDecoration(
-                color: AppColors.kNavBarContainerColor(),
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-            const Spacer(),
-            Text(
-              "Welcome to Jarvis GPT-3",
-              style: AppTextStyle.kHeaderTextStyle(),
-            ),
-            SocialMediaLoginButton(
-              title: 'Login with gmail',
-              backgroundColor: AppColors.kSecondaryColor(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   _pagingBarWidget() {
     return Row(

@@ -36,4 +36,24 @@ class AppButton {
           ),
         ),
       );
+
+  static Widget dafualtButton(
+          {required Function()? onTap, required String text}) =>
+      InkWell(
+        onTap: onTap,
+        child: Container(
+          height: 45,
+          width: 262,
+          decoration: BoxDecoration(
+            color: AppColors.kPrimaryButtonColor(),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Center(
+            child: Text(
+              text.toUpperCase(),
+              style: AppTextStyle.kButtonTextStyle(),
+            ),
+          ),
+        ),
+      );
 }

@@ -12,9 +12,14 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/auth/data/data_sources/user_date_source.dart' as _i1059;
 import '../../features/auth/data/repositories/user_repository_impl.dart'
     as _i687;
 import '../../features/auth/domain/repositories/user_repository.dart' as _i926;
+import '../../features/auth/domain/use_cases/get_user_use_case.dart' as _i308;
+import '../../features/auth/domain/use_cases/login_use_case.dart' as _i1038;
+import '../../features/auth/domain/use_cases/register_use_case.dart' as _i1010;
+import '../../features/auth/presentation/blocs/auth/auth_bloc.dart' as _i331;
 import '../../features/home/data/data_sources/messages_data_source.dart'
     as _i961;
 import '../../features/home/data/repository/messages_repository_impl.dart'
@@ -38,13 +43,32 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i1059.UserDateSource>(() => _i1059.UserDateSource());
     gh.factory<_i961.MessagesDataSource>(() => _i961.MessagesDataSource());
     gh.singleton<_i361.Dio>(() => registerModule.dio);
     gh.singleton<String>(() => registerModule.getBaseUrl());
     gh.factory<_i700.MessageRepository>(() => _i344.MessagesRepositoryImpl());
     gh.factory<_i926.UserRepository>(() => _i687.UserRepositoryImpl());
+    gh.factory<_i1038.LoginUseCase>(() => _i1038.LoginUseCase(
+          email: gh<String>(),
+          password: gh<String>(),
+          userRepository: gh<_i926.UserRepository>(),
+        ));
+    gh.factory<_i1010.RegisterUseCase>(() => _i1010.RegisterUseCase(
+          email: gh<String>(),
+          password: gh<String>(),
+          rePassword: gh<String>(),
+          userRepository: gh<_i926.UserRepository>(),
+        ));
     gh.factory<_i406.GetMessagesUseCase>(() => _i406.GetMessagesUseCase(
         messageRepository: gh<_i700.MessageRepository>()));
+    gh.factory<_i308.GetUserUseCase>(() =>
+        _i308.GetUserUseCase(userDateSource: gh<_i1059.UserDateSource>()));
+    gh.factory<_i331.AuthBloc>(() => _i331.AuthBloc(
+          gh<_i1038.LoginUseCase>(),
+          gh<_i1010.RegisterUseCase>(),
+          gh<_i308.GetUserUseCase>(),
+        ));
     gh.factory<_i836.ChatBloc>(
         () => _i836.ChatBloc(gh<_i406.GetMessagesUseCase>()));
     return this;

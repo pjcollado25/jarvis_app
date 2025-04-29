@@ -8,8 +8,14 @@ class AppTextStyle {
       fontSize: 28, color: color, fontWeight: FontWeight.bold);
   static TextStyle kBodyTextStyle(Color color) => GoogleFonts.poppins(
       fontSize: 15, color: color, fontWeight: FontWeight.w500);
-  static TextStyle kSmallTextStyle() => GoogleFonts.poppins(
-      fontSize: 14, color: Colors.black);
+  static TextStyle kSmallTextStyle() =>
+      GoogleFonts.poppins(fontSize: 14, color: Colors.black);
+  static TextStyle kLinkTextStyle(Color color, bool isLinked) =>
+      GoogleFonts.poppins(
+          fontSize: 14,
+          color: color,
+          decoration:
+              isLinked ? TextDecoration.underline : TextDecoration.none);
   static TextStyle kButtonTextStyle() => TextStyle(
         fontSize: 14,
         color: AppColors.kWhiteColor(),
