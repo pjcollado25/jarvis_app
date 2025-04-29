@@ -15,7 +15,7 @@ class AppTextStyle {
         color: AppColors.kWhiteColor(),
         fontWeight: FontWeight.bold,
       );
-  static TextStyle kHeaderTextStyle() => TextStyle(
+  static TextStyle kHeaderTextStyle() => GoogleFonts.poppins(
         fontSize: 25,
         color: AppColors.kSecondaryColor(),
         fontWeight: FontWeight.bold,

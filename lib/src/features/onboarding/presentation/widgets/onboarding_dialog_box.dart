@@ -72,13 +72,12 @@ class _OnboardingDialogBoxState extends State<OnboardingDialogBox> {
             const Spacer(),
             AppButton.buttonWithArrow(
               onTap: () => setState(() {
-                _index == 0
-                    ? _index++
-                    : showBottomSheet(
-                        backgroundColor: Colors.transparent,
-                        context: context,
-                        builder: (context) => bottomSheetSignIn(),
-                      );
+                _index == 0 ? _index++ : null;
+                // showBottomSheet(
+                //     backgroundColor: Colors.transparent,
+                //     context: context,
+                //     builder: (context) => bottomSheetSignIn(),
+                //   );
               }),
               text: _index == 0 ? "Next" : "Get started",
             ),

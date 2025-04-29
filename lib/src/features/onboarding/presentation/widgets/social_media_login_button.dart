@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jarvis_app/src/config/themes/colors.dart';
 
 class SocialMediaLoginButton extends StatelessWidget {
   final String title;
   final Color backgroundColor;
   const SocialMediaLoginButton({
-    super.key, required this.title, required this.backgroundColor,
+    super.key,
+    required this.title,
+    required this.backgroundColor,
   });
 
   @override

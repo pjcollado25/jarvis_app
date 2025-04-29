@@ -5,7 +5,6 @@ class AppColors {
   static Color kPrimaryColor() => const Color(0xFF00DAAE);
   static Color kSecondaryColor() => const Color(0xFF2C9676);
   static Color kWhiteColor() => const Color(0xFFFFFFFF);
-  
 
   // Components
   static Color kScaffoldColor() => const Color(0xFFF6F6F7);
@@ -25,4 +24,5 @@ class AppColors {
       );
   static Color kPrimaryButtonColor() => const Color(0xFF25946A);
   static Color kNavBarContainerColor() => const Color(0xFFEDEDED);
+  static Color kGrayIconColor() => const Color(0xFFB2B2B2);
 }
